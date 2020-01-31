@@ -1,0 +1,46 @@
+a# Unity generated
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Ss]witchIL2CPPCache/
+[Ss]witchIL2CPPStats/
+# Auto-generated VS/MD solution and project files
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+UpgradeLog.htm
+bin
+*.csproj.meta
+*.sln.meta
+UnityVS.VersionSpecific.dll
+UnityVS.VersionSpecific.dll.meta
+SyntaxTree.VisualStudio.Unity.Bridge.dll
+SyntaxTree.VisualStudio.Unity.Bridge.dll.meta
+SyntaxTree.VisualStudio.Unity.Messaging.dll
+SyntaxTree.VisualStudio.Unity.Messaging.dll.meta
+
+
+# Self added
+*.debuglog
+*.log
+obj.meta
+
+#Others
+.svn
+.idea
+*.DotSettings
+
+# Node.js
+node_modules
+/KillerTrunk/.vs/
+
+# Microsplat stuff this might break but it causes too many merge errors
+*_tarray.asset
+/KillerTrunk/Assets/Materials*
+/KillerTrunk/Assets/MicroSplatData*
