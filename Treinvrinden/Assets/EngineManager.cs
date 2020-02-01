@@ -6,8 +6,7 @@ public class EngineManager : MonoBehaviour
 {
     public int EngineEmber;
     public float EmberLoaded;
-    public int DecreaseRateOver20;
-    public int DecreaseRateUnder20;
+
 
     public int RefillValue;
 
