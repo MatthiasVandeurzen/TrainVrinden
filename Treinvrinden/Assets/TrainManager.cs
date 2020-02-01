@@ -4,48 +4,79 @@ using UnityEngine;
 
 public class TrainManager : MonoBehaviour
 {
-    public bool isBraking;
+    public bool CanAccelerate;
+    public bool isAccellerating;
+    public bool isDecellerating;
 
-    public float TrainSpeed;
-    public float SlowDownFactor;
-    public float SpeedUpFactor;
+    [Range(0, 25)]
+    public float trainSpeed;
+    public float AcceleratingSpeed;
+    public float DecelerateSpeed;
+    public float EmberBurnRate;
 
-    public float MaxSpeed;
-    public float MinsSpeed;
+    public float MinSpeed, MaxSpeed;
 
-    // Start is called before the first frame update
-    void Start()
+    //script references
+    EngineManager s_engineManager;
+
+    private void Awake()
     {
-        isBraking = false;
-        SpeedUp();
-
+        s_engineManager = FindObjectOfType<EngineManager>();
     }
+
     private void Update()
     {
-        if (!isBraking)
+        SpeedCheck();
+        CheckAccelerateOption();
+        Accelerate();
+        Decellerate();
+       
+    }
+
+    public void CheckAccelerateOption()
+    {
+        if (s_engineManager.EmberLoaded <= 0 || trainSpeed >= MaxSpeed)
         {
-            SpeedUp();
+            CanAccelerate = false;
         }
-        else if (isBraking)
+        else if (s_engineManager.EmberLoaded > 0)
         {
-            SlowDown();
+            CanAccelerate = true;
         }
     }
 
-    public void SpeedUp()
+    public void Accelerate()
     {
-        if (TrainSpeed < MaxSpeed)
+        if (CanAccelerate && trainSpeed < MaxSpeed)
         {
-            TrainSpeed += Time.deltaTime * SpeedUpFactor;
+            isAccellerating = true;
+            s_engineManager.EmberLoaded -= EmberBurnRate * Time.deltaTime;
+            trainSpeed += AcceleratingSpeed * Time.deltaTime;
+
         }
     }
 
-    public void SlowDown()
-    {
-        if (TrainSpeed >= MinsSpeed)
+    public void Decellerate()
+    {     
+        if (s_engineManager.EmberLoaded <= 0)
         {
-            TrainSpeed = +Time.deltaTime * SlowDownFactor;
+            isAccellerating = false;
+            trainSpeed -= DecelerateSpeed * Time.deltaTime;
         }
     }
-    
+
+    public void SpeedCheck()
+    {
+        if (trainSpeed < 0 )
+        {
+            trainSpeed = 0;
+        }
+
+        if (trainSpeed >= MaxSpeed)
+        {
+            isAccellerating = false;
+            s_engineManager.EmberLoaded -= EmberBurnRate * Time.deltaTime;
+        }
+    }
+
 }

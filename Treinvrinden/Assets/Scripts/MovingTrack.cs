@@ -18,7 +18,7 @@ public class MovingTrack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        pos += FindObjectOfType<TrainManager>().TrainSpeed * Time.deltaTime;
+        pos += FindObjectOfType<TrainManager>().trainSpeed * Time.deltaTime;
         pos %= distance;
         transform.localPosition = startpos + Direction* pos;
     }
