@@ -44,7 +44,7 @@ public class Handle : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        handleMat.color = normalColor;
+        handleMat.color = HighLightcolor;
     }
 
 
